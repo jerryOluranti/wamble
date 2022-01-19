@@ -1,25 +1,24 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import * as actions from '../store/actionTypes'
 
-interface Payload {
-  display: string,
-  action(): any
-}
+function StartScreen({ tutorial, setTutorial }: any) {
 
-function StartScreen({ open, setOpen, setPayload, tutorial, setTutorial }: any) {
+    const dispatch = useDispatch();
 
-    const morePayload: Payload[] = [
-        { display: 'HOW TO PLAY', action: () => setTutorial(!tutorial) },
+    const morePayload: MenuPayload[] = [
+        { display: 'HOW TO PLAY', action: () => dispatch({ type: actions.OPEN_TUTORIAL }) },
         { display: 'VIEW ON GITHUB', action: () => window.open('https://github.com/jerryHolurantie/wamble', '_blank') },
         { display: 'SUPPORT ME', action: () => window.open('https://www.paypal.me/alpha9931', '_blank') }
     ];
 
-    const difficultyPayload: Payload[] = [
+    const difficultyPayload: MenuPayload[] = [
       { display: 'EASY', action: () => changeDifficulty() },
       { display: 'MEDIUM', action: () => changeDifficulty() },
       { display: 'HARD', action: () => changeDifficulty() }
     ];
 
-    const timePayload: Payload[] = [
+    const timePayload: MenuPayload[] = [
       { display: '10s', action: () => changeTime() },
       { display: '20s', action: () => changeTime() },
       { display: '30s', action: () => changeTime() },
@@ -38,19 +37,18 @@ function StartScreen({ open, setOpen, setPayload, tutorial, setTutorial }: any) 
 
     function showMenu(menu: string): void {
 
-      // switch (menu) {
-      //   case 'difficulty':
-      //     setPayload(difficultyPayload);
-      //     break;
-      //   case 'time':
-      //     setPayload(timePayload);
-      //     break;
-      //   default: 
-      //     setPayload(morePayload)
-      //     break;
-      //   }
+      switch (menu) {
+        case 'difficulty':
+          dispatch({ type: actions.OPEN_MENU , payload: difficultyPayload });
+          break;
+        case 'time':
+           dispatch({ type: actions.OPEN_MENU, payload: timePayload });
+          break;
+        default: 
+           dispatch({ type: actions.OPEN_MENU, payload: morePayload });
+          break;
+        }
 
-      //   setOpen(!open);
     }
 
     return (

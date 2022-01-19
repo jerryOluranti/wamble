@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+
 import './App.css';
 
 import StartScreen from './components/StartScreen';
@@ -6,28 +9,17 @@ import PopUp, { Tutorial } from './components/PopUp'
 
 function App() {
 
-  const [ open, setOpen ] = React.useState(true);
-  const [ tutorial, setTutorial ] = React.useState(false);
-  const [ payload, setPayload ] = React.useState<{ display: string, action: () => {} }[]>([]);
+  const open = useSelector((state: MenuState) => state.isOpen);
+  const tutorial = useSelector((state: MenuState) => state.isTutorialOpen);
 
   return (
     <div className="App">
       <div className="game-container">
-        <StartScreen 
-          open={open}
-          setOpen={setOpen}
-          setPayload={setPayload}
-          setTutorial={setTutorial}
-          tutorial={tutorial}
-        />
+        <StartScreen />
         {open && (
-          <PopUp
-            setOpen={setOpen}
-            open={open}
-            payload={payload}
-          />
+          <PopUp />
         )}
-        {tutorial && <Tutorial setTutorial={setTutorial} tutorial={tutorial} />}
+        {tutorial && <Tutorial />}
       </div>
     </div>
   );

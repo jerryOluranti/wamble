@@ -1,30 +1,35 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../store/actionTypes'
 
-const PopUp = ({ setOpen, open, payloads }: any) => {
+const PopUp = () => {
+
+    const dispatch = useDispatch();
+  const payload = useSelector((state: MenuState) => state.payload);
+
     return (
        <div className="pop-up">
            <div className="pop-up-container">
-               <div className="pop-up-close" onClick={() => setOpen(!open)}><i className="ri-close-line"></i></div>
+               <div className="pop-up-close" onClick={() => dispatch({ type: actions.CLOSE_MENU })}><i className="ri-close-line"></i></div>
                 <div className="pop-up-content">
-                    {/* {payloads.map((payload: any, index: number) => (
+                    {payload.map((payload: any, index: number) => (
                         <div key={index} className="pop-up-content-item" onClick={() => payload.action()}>{payload.display}</div>
-                    ))} */}
-
-                    <div className="pop-up-content-item" onClick={() => {}}>EASY</div>
-                    <div className="pop-up-content-item" onClick={() => {}}>NORMAL</div>
-                    <div className="pop-up-content-item" onClick={() => {}}>HARD</div>
+                    ))}
                 </div>
            </div>
        </div>
     )
 }
 
-export function Tutorial({ setTutorial, tutorial }: any) {
+export function Tutorial() {
     
+
+    const dispatch = useDispatch();
+
     return (
         <div className="tutorial">
             <div className="tutorial-container">
-                <div className="tutorial-close" onClick={() => setTutorial(!tutorial)} ><i className='ri-close-line'></i></div>
+                <div className="tutorial-close" onClick={() => dispatch({ type: actions.CLOSE_TUTORIAL })} ><i className='ri-close-line'></i></div>
                 <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                     Reiciendis magni id quas commodi, odit expedita ab doloremque tempore officia voluptatum tempora 
