@@ -5,7 +5,7 @@ import * as actions from '../store/actionTypes'
 const PopUp = () => {
 
     const dispatch = useDispatch();
-  const payload = useSelector((state: MenuState) => state.payload);
+  const payload = useSelector((state: GameState) => state.payload);
 
     return (
        <div className="pop-up">

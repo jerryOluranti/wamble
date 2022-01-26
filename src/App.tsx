@@ -10,18 +10,17 @@ import GameScreen from './components/GameScreen';
 
 function App() {
 
-  const open = useSelector((state: MenuState) => state.isOpen);
-  const tutorial = useSelector((state: MenuState) => state.isTutorialOpen);
+  const { isOpen, isTutorialOpen, gameStarted } = useSelector((state: GameState) => state);
 
   return (
     <div className="App">
       <div className="game-container">
         <StartScreen />
-        {open && (
+        {isOpen && (
           <PopUp />
         )}
-        {tutorial && <Tutorial />}
-        <GameScreen />
+        {isTutorialOpen && <Tutorial />}
+        {gameStarted && <GameScreen />}
       </div>
     </div>
   );

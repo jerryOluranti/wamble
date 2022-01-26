@@ -3,15 +3,16 @@ interface MenuPayload {
     action(): void
 }
 
-interface MenuAction {
+interface GameAction {
     type: string,
     payload: MenuPayload[]
 }
 
-interface MenuState {
+interface GameState {
     payload: MenuPayload[],
     isOpen?: boolean,
-    isTutorialOpen?: boolean
+    isTutorialOpen?: boolean,
+    gameStarted?: boolean,
 }
 
-type MenuDispatch = (action: MenuAction) => MenuAction;
+type GameDispatch = (action: GameAction) => GameAction;

@@ -1,13 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import * as actions from '../store/actionTypes';
 
 import Character from './Character';
 import Input from './Input';
 
 function GameScreen() {
+
+  const dispatch = useDispatch();
+
   return (
       <div className="game-screen">
           <div className="game-top-bar">
-              <button className="game-button" onClick={ () => {} }><i className="ri-arrow-left-s-line"></i></button>
+              <button className="game-button" onClick={ () => dispatch({ type: actions.END_GAME }) }><i className="ri-arrow-left-s-line"></i></button>
               <div className="game-score-container">
                   <div className="game-score-label">SCORE</div>
                     <div className="game-score-value">230</div>
@@ -19,23 +24,6 @@ function GameScreen() {
               <Character character="H" />
               <Character character="E" />
               <Character character="E" />
-              <Character character="A" />
-              <Character character="L" />
-              <Character character="T" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
-              <Character character="N" />
           </div>
           <div className="game-controls-container">
               <progress className="game-timer" value="80" max="100"></progress>
@@ -45,18 +33,6 @@ function GameScreen() {
           <div className="game-input-container">
                 <div className="game-input-display">ELEP</div>
                 <div className="game-input">
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
-                    <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
                     <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
                     <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>
                     <Input character="E" disabled={false} handleClick={ (char: string) => {} }/>

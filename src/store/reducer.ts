@@ -1,12 +1,12 @@
 import * as actions from './actionTypes';
 
-const initialState: MenuState = {
+const initialState: GameState = {
     payload: [],
     isOpen: false
 }
 
 
-export function menuReducer  ( state: MenuState = initialState, action: MenuAction ): MenuState {
+export function gameReducer  ( state: GameState = initialState, action: GameAction ): GameState {
   switch (action.type) {
     case actions.OPEN_MENU:
       return {
@@ -28,9 +28,18 @@ export function menuReducer  ( state: MenuState = initialState, action: MenuActi
     case actions.CLOSE_TUTORIAL:
         return {
             ...state,
-            isTutorialOpen: false,
-            payload: initialState.payload
-        }
+            isTutorialOpen: false
+        };
+    case actions.START_GAME:
+        return {
+            ...state,
+            gameStarted: true
+        };
+    case actions.END_GAME:
+        return {
+            ...state,
+            gameStarted: false
+        };
   }
   return state;
 };

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from '../store/actionTypes'
 
-function StartScreen({ tutorial, setTutorial }: any) {
+function StartScreen() {
 
     const dispatch = useDispatch();
 
@@ -65,7 +65,7 @@ function StartScreen({ tutorial, setTutorial }: any) {
         </div>
 
         <div className="start-screen-actions">
-          <button className="start-screen-button">START GAME</button>
+          <button className="start-screen-button" onClick={ () => dispatch({ type: actions.START_GAME })}>START GAME</button>
           <button
             className="start-screen-button"
             onClick={() => showMenu("difficulty")}

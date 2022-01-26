@@ -6,13 +6,13 @@ import thunk from "redux-thunk";
 
 import './index.css';
 import App from './App';
-import { menuReducer } from "./store/reducer";
+import { gameReducer } from "./store/reducer";
 // import reportWebVitals from './reportWebVitals';
 
 
-const store: Store<MenuState, MenuAction> & {
-  dispatch: MenuDispatch;
-} = createStore(menuReducer, applyMiddleware(thunk));
+const store: Store<GameState, GameAction> & {
+  dispatch: GameDispatch;
+} = createStore(gameReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
