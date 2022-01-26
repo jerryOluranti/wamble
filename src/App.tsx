@@ -6,6 +6,7 @@ import './App.css';
 
 import StartScreen from './components/StartScreen';
 import PopUp, { Tutorial } from './components/PopUp'
+import GameScreen from './components/GameScreen';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <PopUp />
         )}
         {tutorial && <Tutorial />}
+        <GameScreen />
       </div>
     </div>
   );
