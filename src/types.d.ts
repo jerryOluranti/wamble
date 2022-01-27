@@ -15,4 +15,14 @@ interface GameState {
     gameStarted?: boolean,
 }
 
+interface Hint {
+    char: string,
+    pos: number
+}
+
+interface Display {
+    char: string,
+    isHint: boolean
+}
+
 type GameDispatch = (action: GameAction) => GameAction;
