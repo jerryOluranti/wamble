@@ -30,7 +30,7 @@ export default class Word {
 
         switch (level){
             case Difficulty.EASY:
-                seed = Math.floor(this.scramWord.length * 0.2);
+                seed = Math.floor(this.scramWord.length * 0.4);
                 break;
             case Difficulty.MEDIUM:
                 seed = Math.floor(this.scramWord.length * 0.6);

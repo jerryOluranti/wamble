@@ -6,13 +6,14 @@ import thunk from "redux-thunk";
 
 import './index.css';
 import App from './App';
-import { gameReducer } from "./store/reducer";
+import { reducers } from "./store/reducer";
 // import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker'
 
 
-const store: Store<GameState, GameAction> & {
+const store: Store<any, any> & {
   dispatch: GameDispatch;
-} = createStore(gameReducer, applyMiddleware(thunk));
+} = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,3 +26,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
+serviceWorker.register();

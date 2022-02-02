@@ -5,9 +5,9 @@ import Word from './Word'
 
 export default class Game {
     public currentScore: number = 0;
-    public currentWord: Word | null = null;
-    public currentScrambledWord: String = '';
-    public currentScrambledWordDisplay: Display[] = []; 
+    private currentWord: Word | null = null;
+    private currentScrambledWord: String = '';
+    private currentScrambledWordDisplay: Display[] = []; 
     public isHintUsed: boolean = false;
 
 
@@ -19,38 +19,40 @@ export default class Game {
 
     public getWord(): String {
         this.currentWord = new Word(this.words[ Math.floor(Math.random() * this.words.length) ]);
+        if (this.currentScrambledWord === '') this.getScrambled();
         return this.currentWord.getWord();
     }
 
-    private getScrambled(): String {
+    private getScrambled(): void {
         if (this.currentWord) this.currentScrambledWord = this.currentWord?.scramWord;
-
-        return this.currentScrambledWord;
     }
 
     public getCurrentScrambledWordDisplay(): Display[] {
-
-        this.currentScrambledWord.split('').forEach(char => {
-            this.currentScrambledWordDisplay.push({
+        // console.log('Here => Game > getCurrentScrambledWord()', this.currentScrambledWord);
+        this.currentScrambledWordDisplay = this.currentScrambledWord.split('').map(char => {
+            return {
                 char,
                 isHint: false
-            })
+            }
         })
+
+        // console.log('Here => Game > getCurrentScrambledWord()', this.currentScrambledWordDisplay);
+
 
         return this.currentScrambledWordDisplay;
     }
 
-    public getHint(): String {
+    public getHint(): Display[] {
         const hints: Hint[] | null | undefined = this.currentWord?.hintWord(this.difficulty);
 
         hints?.forEach(hint => {
             this.swap(hint.pos, this.currentScrambledWordDisplay, hint.char)
         })
 
-        return this.currentScrambledWord;
+        return this.currentScrambledWordDisplay;
     }
 
-    public isCorrect(word: String): boolean {
+    public isCorrect(word: string): boolean {
         return word === this.currentWord?.getWord();
     }
 
@@ -72,7 +74,7 @@ export default class Game {
     }
 
     private swap(pos: number, wordDisplay: Display[], swapChar: string): void {
-        const lastPos: number = wordDisplay.findIndex( word => word.char = swapChar );
+        const lastPos: number = wordDisplay.findIndex( word => word.char === swapChar );
 
         wordDisplay[lastPos] = wordDisplay[pos];
 

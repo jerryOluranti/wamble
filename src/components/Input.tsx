@@ -1,15 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 
-type PropType = {
-    character: string,
-    disabled: boolean,
-    handleClick(char: string): void
-}
+function Input({ char, isUsed, handleClick, index }: Input) {
 
-function Input({ character, disabled, handleClick }: PropType) {
   return (
-        <button className="input" onClick={ () => handleClick(character) } disabled={disabled}>
-            { character }
+        <button className="input" style={{ opacity: isUsed ? 0.4 : 1 }}  onClick={ isUsed ? () => {} : () => handleClick({char, isUsed, handleClick, index}) } >
+            { char }
         </button>
     );
 }

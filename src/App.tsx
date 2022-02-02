@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from './store/actionTypes';
 
 
 import './App.css';
@@ -10,7 +11,11 @@ import GameScreen from './components/GameScreen';
 
 function App() {
 
-  const { isOpen, isTutorialOpen, gameStarted } = useSelector((state: GameState) => state);
+  const dispatch = useDispatch();
+
+  // dispatch( {type: actions.LOAD_GAME} );
+
+  const { isOpen, isTutorialOpen, gameStarted } = useSelector((state: any) => state.gameReducer);
 
   return (
     <div className="App">
