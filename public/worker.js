@@ -1,38 +1,41 @@
 let CACHE_NAME = 'Wamble!';
 
+const self = this;
 
-// Install servoce worker
+// Install service worker
 
-self.addEventListener('install', e => {
+self.addEventListener('install', (e) => {
     // install steps
     e.waitUntil(
         caches.open(CACHE_NAME)
         .then(cache => {
-            return cache.addAll(['/'])
+            return cache.addAll(['index.html'])
         })
     )
 })
 
-// cache and return events
-self.addEventListener('fetch', e => {
+// cache and handle requests
+self.addEventListener('fetch', (e) => {
     e.respondWith (
         caches.match(e.request)
-        .then(res => {
-            if (res) return res
+        .then(() => {
             return fetch(e.request)
+                .catch(err => {})
         })
 
     )
 })
 
 // update service worker 
-self.addEventListener('activate', e => {
-    const cacheWhiteList = ['Wamble!']
+self.addEventListener('activate', (e) => {
+    const cacheWhiteList = [];
+    cacheWhiteList.push(CACHE_NAME);
+
     e.waitUntil(
-        caches.keys().then(cacheNames => {
+        caches.keys().then((cacheNames) => {
             return Promise.all(
-                cacheNames.map(name => {
-                    if (cacheWhiteList.indexOf(name) === -1) {
+                cacheNames.map((name) => {
+                    if (!cacheWhiteList.includes(name)) {
                         return caches.delete(name);
                     }
                 })
