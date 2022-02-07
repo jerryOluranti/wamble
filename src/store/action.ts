@@ -18,7 +18,7 @@ export function loadGameData (): GameData<Difficulty, Time> {
     }
 }
 
-export function savegameData(gameData: GameData<Difficulty, Time>, currentHighScore: null | number = null): GameData<Difficulty, Time> {
+export function saveGameData(gameData: GameData<Difficulty, Time>, currentHighScore: null | number = null): GameData<Difficulty, Time> {
     localStorage.setItem('game-data', JSON.stringify({ ...gameData, highScore: currentHighScore }));
     return gameData;
 }

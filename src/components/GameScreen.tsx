@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Game from "../logic/Game";
 import { Difficulty, Time } from "../enums/enums";
-import { savegameData } from "../store/action";
+import { saveGameData } from "../store/action";
 import * as actions from "../store/actionTypes";
 
 import Character from "./Character";
@@ -79,7 +79,7 @@ function GameScreen() {
   }
 
   function next(): void {
-    savegameData(gameData, compareScore(score, gameData.highScore));
+    saveGameData(gameData, compareScore(score, gameData.highScore));
 
     const newGame: Game = new Game(
       wordArray,

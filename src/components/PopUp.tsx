@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../store/actionTypes'
-import { Difficulty, Time } from '../enums/enums'
+// import { Difficulty, Time } from '../enums/enums'
 
 const PopUp = () => {
 

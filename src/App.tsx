@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import * as actions from './store/actionTypes';
+import { useSelector } from 'react-redux';
+// import * as actions from './store/actionTypes';
 
 
 import './App.css';
@@ -11,7 +11,7 @@ import GameScreen from './components/GameScreen';
 
 function App() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();clea
 
   // dispatch( {type: actions.LOAD_GAME} );
 

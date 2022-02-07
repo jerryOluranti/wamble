@@ -1,5 +1,5 @@
 import * as actions from "./actionTypes";
-import { loadGameData, savegameData } from "./action";
+import { loadGameData } from "./action";
 import { combineReducers } from "redux";
 
 const initialState: GameState = {
