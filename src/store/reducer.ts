@@ -63,16 +63,17 @@ function gameReducer(
         gameStarted: true,
       };
     case actions.END_GAME:
-      // console.log('Here => reducer > END_GAME: newScore = ', action.gameData.score, ' | old = ', state.gameData.score)
+      // console.log('Here => reducer > END_GAME: newScore = ', action.gameData.highScore, ' | old = ', state.gameData.highScore)
       return {
         ...state,
         gameStarted: false,
-        gameData: savegameData(action.gameData)
+        gameData: action.gameData
       };
     case actions.UPDATE_DATA:
       return {
         ...state,
         gameData: action.gameData,
+        isOpen: false
       };
   }
   return state;

@@ -67,8 +67,8 @@ export default class Game {
             case Difficulty.EASY:
                 return words.filter( word => word.length <= Difficulty.EASY )
             case Difficulty.MEDIUM:
-                return words.filter( word => word.length >= Difficulty.EASY && word.length <= Difficulty.HARD )
-            default:
+                return words.filter( word => word.length >= Difficulty.EASY && word.length <= Difficulty.MEDIUM )
+            case Difficulty.HARD:
                 return words.filter( word => word.length >= Difficulty.MEDIUM )
         }
     }

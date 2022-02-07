@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Game from "../logic/Game";
 import { Difficulty, Time } from "../enums/enums";
+import { savegameData } from "../store/action";
 import * as actions from "../store/actionTypes";
 
 import Character from "./Character";
@@ -14,6 +15,7 @@ function GameScreen() {
 
   const dispatch = useDispatch();
   const { gameData } = useSelector((state: any) => state.gameReducer);
+  const { game, score, currentDisplay, currentInput, userInput, isCorrect, wordArray } = useSelector((state: any) => state.valuesReducer);
 
    function getLevelColor(gameData: GameData<Difficulty, Time>): string {
      if (!gameData?.level || gameData?.level === undefined)
@@ -69,11 +71,16 @@ function GameScreen() {
         dispatch({ type: actions.START_NEW_GAME, payload } );
       });
 
+
   }, []);
 
-  const { game, score, currentDisplay, currentInput, userInput, isCorrect, wordArray } = useSelector((state: any) => state.valuesReducer);
+  function compareScore(_new: number, old: number): number {
+    return Math.max(_new, old);
+  }
 
   function next(): void {
+    savegameData(gameData, compareScore(score, gameData.highScore));
+
     const newGame: Game = new Game(
       wordArray,
       gameData.level,
@@ -115,12 +122,12 @@ function GameScreen() {
   }
 
   function stop(_new: number, old: number): void {
-     console.log("Here => GameScreen > END_GAME ", _new, ' ---- ', old);
+    //  console.log("Here => GameScreen > END_GAME ", _new, ' ---- ', old);
      dispatch({
        type: actions.END_GAME,
        gameData: {
          ...gameData,
-         highScore: _new > old ? _new : old,
+         highScore: compareScore(_new, old),
          // history: gameData.history.push({score, level: gameData.level, time: gameData.duration })
        },
      });
@@ -145,7 +152,7 @@ function GameScreen() {
           {getLevelDisplay(gameData)}
         </span>
       </div>
-      {isCorrect && setTimeout(() => next(), 2000)}
+      {isCorrect && <div style={{ display: 'none', visibility: 'hidden' }}>{ setTimeout(() => next(), 2000) }</div>}
       <div className="game-scattered-container">
         {currentDisplay &&
           currentDisplay.map((each: Display, index: number) => (

@@ -312,6 +312,8 @@
   flex: 0.65;
   display: flex;
   width: 80%;
+  /* display: none; */
+  /* visibility: hidden; */
 }
 
 .game-input-container {

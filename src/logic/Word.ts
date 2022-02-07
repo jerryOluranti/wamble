@@ -11,9 +11,13 @@ export default class Word {
     }
 
     public scrambleWord(): String {
-        return this.word.split('').sort(function () {
+        const sWord = this.word.split('').sort(function () {
             return 0.5 - Math.random();
         }).join('');
+
+        if (this.word === sWord) this.scrambleWord();
+
+        return sWord;
     }
 
     public getWord(): String {
