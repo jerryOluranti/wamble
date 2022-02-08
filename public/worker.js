@@ -1,4 +1,5 @@
-let CACHE_NAME = 'Wamble!';
+const CACHE_NAME = 'Wamble!';
+const CACHE_FILES = ['index.html', '']
 
 const self = this;
 
